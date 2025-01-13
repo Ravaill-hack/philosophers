@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/13 19:04:50 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:18:36 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,10 @@ Fonctions auxiliaires - listes
 t_philo			*ft_new_philo(int nb, t_var *var);
 void			ft_lst_add_back(t_philo **philo, t_philo *new);
 t_philo			*ft_lst_last(t_philo *philo);
+/*
+Fonctions pour terminer le programme
+*/
+int				ft_end(t_var *var);
+int				ft_lst_free(t_philo **philo);
 
 #endif

@@ -6,6 +6,7 @@ SRC_FILES = \
 	main.c \
 	actions.c \
 	lst_utils.c \
+	end.c \
 	init.c
 
 OBJS = $(SRC_FILES:/%.c=/%.o)
