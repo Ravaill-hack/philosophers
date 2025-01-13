@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/13 14:33:21 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:44:29 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ typedef struct s_var
 	int	nb_eat_4_each;
 	t_philo **philo;
 }	t_var;
+
+t_var	*ft_init_var(int argc, char **argv);
+t_philo	**ft_build_philo(int nb_philo);
 
 #endif

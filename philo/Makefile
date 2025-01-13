@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_FILES = \
 	main.c \
-	utils.c
+	init.c
 
 OBJS = $(SRC_FILES:/%.c=/%.o)
 
