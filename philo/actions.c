@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 14:09:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/13 19:04:33 by lmatkows         ###   ########.fr       */
+/*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
+/*   Updated: 2025/01/13 18:52:55 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*ft_philo(t_var *var)
+int	ft_do_sth(t_var *var)
 {
 	(void) var;
-	return (NULL);
-}
-
-int	main(int argc, char **argv)
-{
-	t_var	*var;
-
-	if (argc != 5 && argc != 6)
-		return (0);
-	var = ft_init_var(argc, argv);
+	return (0);
 }

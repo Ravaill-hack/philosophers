@@ -1,9 +1,11 @@
 NAME = PHILO
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 SRC_FILES = \
 	main.c \
+	actions.c \
+	lst_utils.c \
 	init.c
 
 OBJS = $(SRC_FILES:/%.c=/%.o)
