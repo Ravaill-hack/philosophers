@@ -6,62 +6,33 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/13 19:05:09 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:59:31 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	**ft_build_philo(int nb_philo, t_var *var)
+void	ft_build(t_var *var)
 {
 	t_philo	**philo;
+	t_fork 	**forks;
 	int		i;
 
-	i = 1;
+	i = 2;
 	philo = (t_philo **)malloc(sizeof(t_philo *));
-	*philo = NULL;
-	if (!philo)
+	forks = (t_fork **)malloc(sizeof(t_fork *) * (var->nb_philo));
+	if (!forks || !philo)
 		return (NULL);
-	while (i <= nb_philo)
+	*philo = ft_new_philo(1, var);
+	*forks = ft_new_fork(1, var);
+	(*forks)->ph_lft = *philo;
+	(*philo)->f_rgt = *forks;
+	while (i <= var->nb_philo)
 	{
-		ft_lst_add_back(philo, ft_new_philo(i, var));
+		ft_lst_add_pnf(var, ft_new_philo(i, var), ft_new_fork(i, var));
 		i++;
 	}
-	return (philo);
-}
-
-int	*ft_build_forks(int nb_philo)
-{
-	int	*forks;
-	int	i;
-
-	forks = (int *)malloc(sizeof(int) * nb_philo);
-	if (!forks)
-		return (NULL);
-	i = 0;
-	while (i < nb_philo)
-	{
-		forks[i] = 0;
-		i++;
-	}
-	return (forks);
-}
-
-pthread_mutex_t	*ft_build_mutex(int nb_philo, t_var *var)
-{
-	pthread_mutex_t	*mutex;
-	int				i;
-
-	mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * nb_philo);
-	if (!mutex)
-		return (NULL);
-	i = 0;
-	while (i < nb_philo)
-	{
-		pthread_mutex_init(&(mutex[i]), NULL);
-		i++;
-	}
-	return (mutex);
+	return (var);
 }
 
 t_var	*ft_init_var(int argc, char **argv)
@@ -79,8 +50,6 @@ t_var	*ft_init_var(int argc, char **argv)
 		var->nb_eat_4_each = -1;
 	else
 		var->nb_eat_4_each = argv[5];
-	var->forks = ft_build_forks(var->nb_philo);
-	var->philo = ft_build_philo(var->nb_philo, var);
-	var->mutex_forks = ft_build_mutex(var->nb_philo, var);
+	ft_build (var);
 	return (var);
 }
