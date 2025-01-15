@@ -6,17 +6,11 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:09:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 16:06:05 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:21:31 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*ft_philo(t_var *var)
-{
-	(void) var;
-	return (NULL);
-}
 
 int	main(int argc, char **argv)
 {
