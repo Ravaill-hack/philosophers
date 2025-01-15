@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 13:25:17 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:45:07 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,17 @@ void	ft_build(t_var *var)
 		var->philo[i] = ft_new_philo(i + 1, var);
 		i++;
 	}
+	if (var->nb_philo == 1)
+	{
+		var->philo[0].ph_lft = NULL;
+		var->philo[0].ph_rgt = NULL;
+		var->philo[0].f_rgt = NULL;
+	}
+	else
+	{
 	var->philo[var->nb_philo - 1].ph_rgt = &(var->philo[0]);
 	var->philo[var->nb_philo - 1].f_rgt = &(var->mut_forks[0]);
+	}
 }
 
 t_philo	ft_new_philo(int nb, t_var *var)
@@ -45,7 +54,7 @@ t_philo	ft_new_philo(int nb, t_var *var)
 	philo.h_end_last_meal = 0;
 	philo.ph_lft = &(var->philo[nb - 2]);
 	philo.ph_rgt = &(var->philo[nb]);
-	philo.f_lft = &(var->mut_forks[nb - 2]);
+	philo.f_lft = &(var->mut_forks[nb - 1]);
 	philo.f_rgt = &(var->mut_forks[nb]);
 	pthread_create(&(philo.thread), NULL, ft_do_sth, var);
 	return (philo);
