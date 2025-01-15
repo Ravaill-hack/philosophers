@@ -11,12 +11,15 @@ SRC_FILES = \
 	end.c \
 	init.c
 
-OBJS = $(SRC_FILES:/%.c=/%.o)
+OBJS = $(SRC_FILES:.c=.o)
 
 all: $(NAME)
 
 $(NAME):$(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
