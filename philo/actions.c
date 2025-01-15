@@ -6,14 +6,16 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/13 18:52:55 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:24:56 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_do_sth(t_var *var)
+void	*ft_do_sth(void *var)
 {
-	(void) var;
-	return (0);
+	t_var	*v;
+
+	v = (t_var *)var;
+	return (var);
 }

@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 12:52:31 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:25:17 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_build(t_var *var)
 	var->philo = malloc(var->nb_philo * sizeof(t_philo));
 	var->mut_forks = malloc(var->nb_philo * sizeof(pthread_mutex_t));
 	if (!(var->philo) || !(var->mut_forks))
-		return (NULL);
+		return ;
 	var->philo[0] = ft_new_philo(1, var);
 	var->philo[0].ph_lft = &(var->philo[var->nb_philo - 1]);
 	var->philo[0].f_lft = &(var->mut_forks[0]);
@@ -33,7 +33,6 @@ void	ft_build(t_var *var)
 	}
 	var->philo[var->nb_philo - 1].ph_rgt = &(var->philo[0]);
 	var->philo[var->nb_philo - 1].f_rgt = &(var->mut_forks[0]);
-	return (var);
 }
 
 t_philo	ft_new_philo(int nb, t_var *var)
@@ -59,14 +58,14 @@ t_var	*ft_init_var(int argc, char **argv)
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (NULL);
-	var->nb_philo = argv[1];
-	var->t_2_die = argv[2];
-	var->t_2_eat = argv[3];
-	var->t_2_slp = argv[4];
+	var->nb_philo = ft_atoi(argv[1]);
+	var->t_2_die = ft_atoi(argv[2]);
+	var->t_2_eat = ft_atoi(argv[3]);
+	var->t_2_slp = ft_atoi(argv[4]);
 	if (argc == 5)
 		var->nb_eat_4_each = -1;
 	else
-		var->nb_eat_4_each = argv[5];
+		var->nb_eat_4_each = ft_atoi(argv[5]);
 	ft_build (var);
 	return (var);
 }

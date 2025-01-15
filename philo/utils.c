@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 13:23:25 by lmatkows         ###   ########.fr       */
+/*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
+/*   Updated: 2025/01/15 13:22:34 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_end(t_var *var)
+int	ft_atoi(char *str)
 {
-	free (var->philo);
-	var->philo = NULL;
-	free (var->mut_forks);
-	var->mut_forks = NULL;
-	free (var);
-	var = NULL;
-	return (0);
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while (((str[i] >= 9) && (str[i] <= 13)) || (str[i] == 32))
+		i++;
+	if ((str[i] == '+') || (str[i] == '-'))
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while ((str[i] >= '0') && (str[i] <= '9'))
+	{
+		nb = nb * 10 + str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
 }
