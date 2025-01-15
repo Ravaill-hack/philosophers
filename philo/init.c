@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/14 16:59:31 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:52:31 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,42 @@
 
 void	ft_build(t_var *var)
 {
-	t_philo	**philo;
-	t_fork 	**forks;
 	int		i;
 
-	i = 2;
-	philo = (t_philo **)malloc(sizeof(t_philo *));
-	forks = (t_fork **)malloc(sizeof(t_fork *) * (var->nb_philo));
-	if (!forks || !philo)
+	i = 1;
+	var->philo = malloc(var->nb_philo * sizeof(t_philo));
+	var->mut_forks = malloc(var->nb_philo * sizeof(pthread_mutex_t));
+	if (!(var->philo) || !(var->mut_forks))
 		return (NULL);
-	*philo = ft_new_philo(1, var);
-	*forks = ft_new_fork(1, var);
-	(*forks)->ph_lft = *philo;
-	(*philo)->f_rgt = *forks;
-	while (i <= var->nb_philo)
+	var->philo[0] = ft_new_philo(1, var);
+	var->philo[0].ph_lft = &(var->philo[var->nb_philo - 1]);
+	var->philo[0].f_lft = &(var->mut_forks[0]);
+	pthread_mutex_init(&(var->mut_forks[0]), NULL);
+	while (i < var->nb_philo)
 	{
-		ft_lst_add_pnf(var, ft_new_philo(i, var), ft_new_fork(i, var));
+		pthread_mutex_init(&(var->mut_forks[i]), NULL);
+		var->philo[i] = ft_new_philo(i + 1, var);
 		i++;
 	}
+	var->philo[var->nb_philo - 1].ph_rgt = &(var->philo[0]);
+	var->philo[var->nb_philo - 1].f_rgt = &(var->mut_forks[0]);
 	return (var);
+}
+
+t_philo	ft_new_philo(int nb, t_var *var)
+{
+	t_philo	philo;
+
+	philo.n = nb;
+	philo.nb_meals = 0;
+	philo.is_eating = 0;
+	philo.h_end_last_meal = 0;
+	philo.ph_lft = &(var->philo[nb - 2]);
+	philo.ph_rgt = &(var->philo[nb]);
+	philo.f_lft = &(var->mut_forks[nb - 2]);
+	philo.f_rgt = &(var->mut_forks[nb]);
+	pthread_create(&(philo.thread), NULL, ft_do_sth, var);
+	return (philo);
 }
 
 t_var	*ft_init_var(int argc, char **argv)
