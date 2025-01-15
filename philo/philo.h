@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 16:28:35 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:24:00 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 
 typedef struct s_var
 {
-	int 			t;
+	int 			t_start;
 	int				nb_philo;
 	int				t_2_die;
 	int				t_2_eat;
@@ -62,9 +62,8 @@ int		ft_type_error(char *str);
 /*
 Fonctions de demarrage et suivi
 */
-int		ft_start_cycle(t_var *var);
 int		ft_manage_cycle(t_var *var);
-int		ft_wait(t_var *var);
+int		ft_join(t_var *var);
 int		ft_end_cycle(t_var *var);
 /*
 Actions

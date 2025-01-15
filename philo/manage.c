@@ -6,20 +6,11 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 17:09:30 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:23:50 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_start_cycle(t_var *var)
-{
-	/*
-	demarrer les actions : demander a un philosophe sur 2 de commencer a manger?
-	*/
-	(void) var;
-	return (0);
-}
 
 int	ft_manage_cycle(t_var *var)
 {
@@ -30,7 +21,7 @@ int	ft_manage_cycle(t_var *var)
 	return (0);
 }
 
-int	ft_wait(t_var *var)
+int	ft_join(t_var *var)
 {
 	int	i;
 
@@ -40,7 +31,6 @@ int	ft_wait(t_var *var)
 		pthread_join(var->philo[i].thread, NULL);
 		i++;
 	}
-	(void) var;
 	return (0);
 }
 

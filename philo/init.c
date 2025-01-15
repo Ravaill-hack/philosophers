@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 15:50:45 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:27:37 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_philo	ft_new_philo(int nb, t_var *var)
 	philo.h_end_last_meal = 0;
 	philo.ph_rgt = &(var->philo[nb]);
 	philo.f_rgt = &(var->mut_forks[nb]);
-	pthread_create(&(philo.thread), NULL, ft_do_sth, var);
+	pthread_create(&(philo.thread), NULL, &ft_do_sth, var);
 	return (philo);
 }
 
@@ -72,7 +72,6 @@ t_var	*ft_init_var(int argc, char **argv)
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (NULL);
-	var->t = ft_get_time_ms();
 	var->nb_philo = (int)ft_atol(argv[1]);
 	var->t_2_die = (int)ft_atol(argv[2]);
 	var->t_2_eat = (int)ft_atol(argv[3]);
@@ -81,6 +80,7 @@ t_var	*ft_init_var(int argc, char **argv)
 		var->nb_eat_4_each = -1;
 	else
 		var->nb_eat_4_each = (int)ft_atol(argv[5]);
+	var->t_start = ft_get_time_ms();
 	ft_build (var);
 	return (var);
 }
