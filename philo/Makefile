@@ -9,6 +9,7 @@ SRC_FILES = \
 	utils.c \
 	debug.c \
 	end.c \
+	error.c \
 	init.c
 
 OBJS = $(SRC_FILES:.c=.o)

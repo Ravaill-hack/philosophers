@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 15:15:46 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:58:27 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_philo
 {
@@ -53,14 +54,23 @@ t_var	*ft_init_var(int argc, char **argv);
 void	ft_build(t_var *var);
 t_philo	ft_new_philo(int nb, t_var *var);
 /*
+Fonctions pour gerer les erreurs
+*/
+int		ft_is_arg_error(int argc, char **argv);
+int		ft_arg_number_error(int argc);
+int		ft_type_error(char *str);
+/*
 Actions
 */
 void	*ft_do_sth(void *var);
 /*
 Fonctions auxiliaires
 */
-int		ft_atoi(char *str);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+long	ft_atol(char *str);
 int		ft_get_time_ms(void);
+void	ft_put_message(int i_p, t_var *var, char *str);
 /*
 Fonctions pour terminer le programme
 */

@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 15:16:09 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:50:45 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_philo	ft_new_philo(int nb, t_var *var)
 	}	
 	philo.n = nb;
 	philo.nb_meals = 0;
+	philo.h_2_die = 0;
 	philo.is_eating = 0;
 	philo.h_end_last_meal = 0;
 	philo.ph_rgt = &(var->philo[nb]);
@@ -72,14 +73,14 @@ t_var	*ft_init_var(int argc, char **argv)
 	if (!var)
 		return (NULL);
 	var->t = ft_get_time_ms();
-	var->nb_philo = ft_atoi(argv[1]);
-	var->t_2_die = ft_atoi(argv[2]);
-	var->t_2_eat = ft_atoi(argv[3]);
-	var->t_2_slp = ft_atoi(argv[4]);
+	var->nb_philo = (int)ft_atol(argv[1]);
+	var->t_2_die = (int)ft_atol(argv[2]);
+	var->t_2_eat = (int)ft_atol(argv[3]);
+	var->t_2_slp = (int)ft_atol(argv[4]);
 	if (argc == 5)
 		var->nb_eat_4_each = -1;
 	else
-		var->nb_eat_4_each = ft_atoi(argv[5]);
+		var->nb_eat_4_each = (int)ft_atol(argv[5]);
 	ft_build (var);
 	return (var);
 }
