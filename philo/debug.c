@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:56:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 13:24:04 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:30:03 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_print_data(t_var	var)
 	printf("number of meals for each : %d\n\n", var.nb_eat_4_each);
 	while (i < var.nb_philo)
 	{
+		printf("adr philo : %p\n", &(var.philo[i]));
 		printf("id : %d\n", (var.philo[i]).n);
 		printf("last meal : %d\n", (var.philo[i]).h_end_last_meal);
 		printf("is eating : %d\n", (var.philo[i]).is_eating);
