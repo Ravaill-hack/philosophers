@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 15:58:27 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:08:07 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ int		ft_is_arg_error(int argc, char **argv);
 int		ft_arg_number_error(int argc);
 int		ft_type_error(char *str);
 /*
+Fonctions de demarrage et suivi
+*/
+int		ft_start_cycle(t_var *var);
+int		ft_manage_cycle(t_var *var);
+int		ft_wait(t_var *var);
+int		ft_end_cycle(t_var *var);
+/*
 Actions
 */
 void	*ft_do_sth(void *var);
@@ -71,10 +78,6 @@ void	ft_putstr_fd(char *s, int fd);
 long	ft_atol(char *str);
 int		ft_get_time_ms(void);
 void	ft_put_message(int i_p, t_var *var, char *str);
-/*
-Fonctions pour terminer le programme
-*/
-int		ft_end(t_var *var);
 /*
 Fonctions pour debugger
 */

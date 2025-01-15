@@ -8,7 +8,7 @@ SRC_FILES = \
 	lst_utils.c \
 	utils.c \
 	debug.c \
-	end.c \
+	manage.c \
 	error.c \
 	init.c
 
