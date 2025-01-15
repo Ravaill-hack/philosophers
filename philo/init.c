@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 14:45:07 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:16:09 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ void	ft_build(t_var *var)
 {
 	int		i;
 
-	i = 1;
+	i = 0;
 	var->philo = malloc(var->nb_philo * sizeof(t_philo));
 	var->mut_forks = malloc(var->nb_philo * sizeof(pthread_mutex_t));
 	if (!(var->philo) || !(var->mut_forks))
 		return ;
-	var->philo[0] = ft_new_philo(1, var);
-	var->philo[0].ph_lft = &(var->philo[var->nb_philo - 1]);
-	var->philo[0].f_lft = &(var->mut_forks[0]);
-	pthread_mutex_init(&(var->mut_forks[0]), NULL);
 	while (i < var->nb_philo)
 	{
 		pthread_mutex_init(&(var->mut_forks[i]), NULL);
@@ -48,13 +44,21 @@ t_philo	ft_new_philo(int nb, t_var *var)
 {
 	t_philo	philo;
 
+	if(nb == 1)
+	{
+		philo.ph_lft = &(var->philo[var->nb_philo - 1]);
+		philo.f_lft = &(var->mut_forks[0]);
+	}
+	else
+	{
+		philo.ph_lft = &(var->philo[nb - 2]);
+		philo.f_lft = &(var->mut_forks[nb - 1]);
+	}	
 	philo.n = nb;
 	philo.nb_meals = 0;
 	philo.is_eating = 0;
 	philo.h_end_last_meal = 0;
-	philo.ph_lft = &(var->philo[nb - 2]);
 	philo.ph_rgt = &(var->philo[nb]);
-	philo.f_lft = &(var->mut_forks[nb - 1]);
 	philo.f_rgt = &(var->mut_forks[nb]);
 	pthread_create(&(philo.thread), NULL, ft_do_sth, var);
 	return (philo);
@@ -67,6 +71,7 @@ t_var	*ft_init_var(int argc, char **argv)
 	var = (t_var *)malloc(sizeof(t_var));
 	if (!var)
 		return (NULL);
+	var->t = ft_get_time_ms();
 	var->nb_philo = ft_atoi(argv[1]);
 	var->t_2_die = ft_atoi(argv[2]);
 	var->t_2_eat = ft_atoi(argv[3]);

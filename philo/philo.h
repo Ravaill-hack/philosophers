@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 13:19:13 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:15:46 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 
 typedef struct s_var
 {
+	int 			t;
 	int				nb_philo;
 	int				t_2_die;
 	int				t_2_eat;
@@ -59,6 +60,7 @@ void	*ft_do_sth(void *var);
 Fonctions auxiliaires
 */
 int		ft_atoi(char *str);
+int		ft_get_time_ms(void);
 /*
 Fonctions pour terminer le programme
 */

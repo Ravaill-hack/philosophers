@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 13:22:34 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:14:43 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,12 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (nb * sign);
+}
+
+int	ft_get_time_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
