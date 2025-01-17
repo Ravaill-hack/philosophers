@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 17:24:00 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:43:51 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_var
 	int				t_2_eat;
 	int				t_2_slp;
 	int				nb_eat_4_each;
+	int				some1_died;
 	pthread_mutex_t	*mut_forks;
 	t_philo			*philo;
 }	t_var;

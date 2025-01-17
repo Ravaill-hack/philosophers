@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 17:27:37 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:44:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_var	*ft_init_var(int argc, char **argv)
 	else
 		var->nb_eat_4_each = (int)ft_atol(argv[5]);
 	var->t_start = ft_get_time_ms();
+	var->some1_died = 0;
 	ft_build (var);
 	return (var);
 }
