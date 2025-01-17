@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/17 09:43:51 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:21:15 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_end_cycle(t_var *var);
 Actions
 */
 void	*ft_do_sth(void *var);
-void	ft_take_2_forks(t_var *var, int i_p);
+int		ft_take_2_forks(t_var *var, int i_p);
 void	ft_free_2_forks(t_var *var, int i_p);
 /*
 Fonctions auxiliaires
