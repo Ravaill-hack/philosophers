@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 17:23:50 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:25:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_end_cycle(t_var *var)
 		pthread_mutex_destroy(&(var->mut_forks[i]));
 		i++;
 	}
+	pthread_mutex_destroy(&(var->mut_var));
 	free (var->mut_forks);
 	var->mut_forks = NULL;
 	free (var->philo);
