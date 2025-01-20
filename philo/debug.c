@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:56:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 14:11:33 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:58:47 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_print_data(t_var	var)
 		printf("id : %d\n", (var.philo[i]).n);
 		printf("last meal : %d\n", (var.philo[i]).h_end_last_meal);
 		printf("is eating : %d\n", (var.philo[i]).is_eating);
-		printf("hour 2 die : %d\n", (var.philo[i]).h_2_die);
+		printf("hour 2 die : %ld\n", (var.philo[i]).h_2_die);
 		printf("nb meals : %d\n", (var.philo[i]).nb_meals);
 		printf("lft philo : %p\n", (var.philo[i]).ph_lft);
 		printf("rgt philo : %p\n", (var.philo[i]).ph_rgt);

@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 14:36:37 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:57:52 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,20 @@ void	*ft_do_sth(void *phil)
 	t_philo	*philo;
 
 	philo = (t_philo *)phil;
-	ft_eat(philo->var, philo->n - 1);
-	ft_sleep(philo->var, philo->n - 1);
-	ft_think(philo->var, philo->n - 1);
+	while (1)
+	{
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+			return (NULL);
+		ft_eat(philo->var, philo->n - 1);
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+			return (NULL);
+		ft_sleep(philo->var, philo->n - 1);
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+			return (NULL);
+		ft_think(philo->var, philo->n - 1);
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+			return (NULL);
+	}
 	return (phil);
 }
 
@@ -69,10 +80,11 @@ int	ft_some1_died(t_var *var)
 int	ft_philo_died(t_var *var, int i_p)
 {
 	pthread_mutex_lock(&(var->mut_var));
-	if (var->philo[i_p].h_2_die <= ft_get_time_ms())
+	if (var->philo[i_p].h_2_die <= (ft_get_time_ms() - var->t_start))
 	{
 		ft_put_message (i_p, var, " died\n");
 		var->some1_died = 1;
+		pthread_mutex_unlock(&(var->mut_var));
 		return (1);
 	}
 	pthread_mutex_unlock(&(var->mut_var));

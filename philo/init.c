@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 13:34:53 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:54:21 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 {
 	philo->n = nb + 1;
 	philo->nb_meals = 0;
-	philo->h_2_die = 0;
+	philo->h_2_die = var->t_start + var->t_2_die;
 	philo->is_eating = 0;
 	philo->var = var;
 	if (nb == 0)

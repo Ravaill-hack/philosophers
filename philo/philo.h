@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 14:35:16 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:58:05 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_philo
 	int				n;
 	int				h_end_last_meal;
 	int				is_eating;
-	int				h_2_die;
+	long			h_2_die;
 	int				nb_meals;
 	pthread_t		thread;
 	struct s_philo	*ph_rgt;
@@ -68,6 +68,7 @@ Fonctions de demarrage et suivi
 int		ft_manage_cycle(t_var *var);
 int		ft_join(t_var *var);
 int		ft_end_cycle(t_var *var);
+int		ft_philo_died(t_var *var, int i_p);
 /*
 Actions
 */
