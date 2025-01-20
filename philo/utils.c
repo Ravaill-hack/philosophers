@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 15:51:40 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:31:09 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,21 @@ long	ft_atol(char *str)
 	return (nb * sign);
 }
 
-int	ft_get_time_ms(void)
+long	ft_get_time_ms(void)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	//printf("secondes = %d, usecondes = %d\n", tv.tv_sec, tv.tv_usec);
+	return (((long)tv.tv_sec * 1000) + ((long)tv.tv_usec / 1000));
 }
 
 void	ft_put_message(int i_p, t_var *var, char *str)
 {
-	ft_putnbr_fd(ft_get_time_ms(), 1);
-	write (1, " ", 1);
-	ft_putnbr_fd(var->philo[i_p].n, 1);
-	ft_putstr_fd(str, 1);
-	write (1, "\n", 1);
+	printf("%ld %d%s", ft_get_time_ms() - var->t_start, var->philo[i_p].n, str);
+	// ft_putnbr_fd(ft_get_time_ms(), 1);
+	// write (1, " ", 1);
+	// ft_putnbr_fd(var->philo[i_p].n, 1);
+	// ft_putstr_fd(str, 1);
+	// write (1, "\n", 1);
 }

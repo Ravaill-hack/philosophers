@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 13:34:19 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:35:16 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 
 typedef struct s_var
 {
-	int 			t_start;
+	long 			t_start;
 	int				nb_philo;
 	int				t_2_die;
 	int				t_2_eat;
@@ -72,6 +72,9 @@ int		ft_end_cycle(t_var *var);
 Actions
 */
 void	*ft_do_sth(void *var);
+void	ft_eat(t_var *var, int i_p);
+void	ft_sleep(t_var *var, int i_p);
+void	ft_think(t_var *var, int i_p);
 int		ft_take_2_forks(t_var *var, int i_p);
 void	ft_free_2_forks(t_var *var, int i_p);
 /*
@@ -80,7 +83,7 @@ Fonctions auxiliaires
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 long	ft_atol(char *str);
-int		ft_get_time_ms(void);
+long	ft_get_time_ms(void);
 void	ft_put_message(int i_p, t_var *var, char *str);
 /*
 Fonctions pour debugger

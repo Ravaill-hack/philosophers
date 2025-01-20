@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:56:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/15 17:22:26 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:11:33 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_data(t_var	var)
 
 	i = 0;
 	printf("nb philo : %d\ntime die : %dms\n", var.nb_philo, var.t_2_die);
-	printf("hour init : %dms\n", var.t_start);
+	printf("hour init : %ldms\n", var.t_start);
 	printf("time eat : %dms\ntime sleep : %dms\n", var.t_2_eat, var.t_2_slp);
 	printf("number of meals for each : %d\n\n", var.nb_eat_4_each);
 	while (i < var.nb_philo)
