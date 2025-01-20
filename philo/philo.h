@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/18 12:24:31 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:34:19 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 	struct s_philo	*ph_lft;
 	pthread_mutex_t	*f_rgt;
 	pthread_mutex_t	*f_lft;
+	struct	s_var	*var;
 }	t_philo;
 
 typedef struct s_var
@@ -54,7 +55,7 @@ Fonctions d'initialisation
 */
 t_var	*ft_init_var(int argc, char **argv);
 void	ft_build(t_var *var);
-t_philo	ft_new_philo(int nb, t_var *var);
+void	ft_new_philo(t_var *var, t_philo *philo, int i);
 /*
 Fonctions pour gerer les erreurs
 */

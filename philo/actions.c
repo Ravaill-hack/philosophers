@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/18 16:38:32 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:38:20 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	*ft_do_sth(void *phil)
 	t_philo	*philo;
 
 	philo = (t_philo *)phil;
-	
+	pthread_mutex_lock(&(philo->var->mut_var));
+	printf("je suis le thread %lu\n", philo->thread);
+	pthread_mutex_unlock(&(philo->var->mut_var));
 	return (phil);
 }
 
@@ -55,8 +57,10 @@ int	ft_philo_died(t_var *var, int i_p)
 	{
 		ft_put_message (i_p, var, "died\n");
 		var->some1_died = 1;
+		return (1);
 	}
 	pthread_mutex_unlock(&(var->mut_var));
+	return (0);
 }
 
 void	ft_free_2_forks(t_var *var, int i_p)
