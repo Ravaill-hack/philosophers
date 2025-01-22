@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 14:58:05 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:06:19 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_var
 	int				t_2_eat;
 	int				t_2_slp;
 	int				nb_eat_4_each;
-	int				some1_died;
 	pthread_mutex_t	*mut_forks;
 	pthread_mutex_t	mut_var;
 	t_philo			*philo;
@@ -65,10 +64,10 @@ int		ft_type_error(char *str);
 /*
 Fonctions de demarrage et suivi
 */
-int		ft_manage_cycle(t_var *var);
 int		ft_join(t_var *var);
 int		ft_end_cycle(t_var *var);
 int		ft_philo_died(t_var *var, int i_p);
+int		ft_philo_ate_enough(t_var *var, int i_p);
 /*
 Actions
 */
@@ -77,7 +76,6 @@ void	ft_eat(t_var *var, int i_p);
 void	ft_sleep(t_var *var, int i_p);
 void	ft_think(t_var *var, int i_p);
 int		ft_take_2_forks(t_var *var, int i_p);
-void	ft_free_2_forks(t_var *var, int i_p);
 /*
 Fonctions auxiliaires
 */

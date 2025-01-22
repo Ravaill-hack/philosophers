@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:09:50 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/20 12:44:25 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:05:51 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int argc, char **argv)
 		return (1);
 	var = ft_init_var(argc, argv);
 	ft_join(var);
-	//ft_manage_cycle(var);
-	//ft_join(var);
 	ft_end_cycle(var);
 	return (0);
 }
