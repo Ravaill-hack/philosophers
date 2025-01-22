@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 11:15:57 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:18:39 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	*ft_do_sth(void *phil)
 	philo = (t_philo *)phil;
 	while (1)
 	{
-		printf("h to die : %ld\n", philo->h_2_die);
-		printf("current h : %ld\n", ft_get_time_ms());
 		if (ft_philo_died(philo->var, philo->n - 1) == 1)
 			return (NULL);
 		ft_eat(philo->var, philo->n - 1);
