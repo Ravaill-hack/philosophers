@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 10:12:51 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:39:33 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ long	ft_get_time_ms(void)
 
 void	ft_put_message(int i_p, t_var *var, char *str)
 {
-	printf("%ld %d%s", ft_get_time_ms() - var->t_start, var->philo[i_p].n, str);
+	printf("%ld %d%s", ft_get_time_ms(), var->philo[i_p].n, str);
 }
