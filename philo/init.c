@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 09:54:37 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:09:33 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,13 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 	philo->is_eating = 0;
 	philo->var = var;
 	if (nb == 0)
-	{
-		philo->ph_lft = &(var->philo[var->nb_philo - 1]);
 		philo->f_lft = &(var->mut_forks[var->nb_philo - 1]);
-	}
 	else
-	{
-		philo->ph_lft = &(var->philo[nb - 1]);
 		philo->f_lft = &(var->mut_forks[nb - 1]);
-	}	
 	if (nb == var->nb_philo - 1)
-	{
-		philo->ph_rgt = &(var->philo[0]);
 		philo->f_rgt = &(var->mut_forks[0]);
-	}
 	else
-	{
-		philo->ph_rgt = &(var->philo[nb + 1]);
 		philo->f_rgt = &(var->mut_forks[nb + 1]);
-	}
 	pthread_create(&(philo->thread), NULL, &ft_do_sth, philo);
 	
 }

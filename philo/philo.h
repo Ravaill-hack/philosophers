@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 10:06:19 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:08:34 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct s_philo
 	long			h_2_die;
 	int				nb_meals;
 	pthread_t		thread;
-	struct s_philo	*ph_rgt;
-	struct s_philo	*ph_lft;
 	pthread_mutex_t	*f_rgt;
 	pthread_mutex_t	*f_lft;
 	struct	s_var	*var;
