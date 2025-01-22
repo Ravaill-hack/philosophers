@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 10:04:43 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:08:05 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	ft_philo_died(t_var *var, int i_p)
 int	ft_philo_ate_enough(t_var *var, int i_p)
 {
 	pthread_mutex_lock(&(var->mut_var));
+	if (var->nb_eat_4_each == -1)
+	{
+		pthread_mutex_unlock(&(var->mut_var));
+		return (0);
+	}
 	if (var->philo[i_p].nb_meals >= var->nb_eat_4_each)
 	{
 		ft_put_message (i_p, var, " ate all the meals needed\n");
