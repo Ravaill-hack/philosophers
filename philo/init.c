@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 11:00:25 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:16:15 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 		return ;
 	}
 	if (nb == 0)
-		philo->f_lft = &(var->mut_forks[var->nb_philo - 1]);
+		philo->f_lft = &(var->mut_forks[0]);
 	else
-		philo->f_lft = &(var->mut_forks[nb - 1]);
+		philo->f_lft = &(var->mut_forks[nb]);
 	if (nb == var->nb_philo - 1)
 		philo->f_rgt = &(var->mut_forks[0]);
 	else
