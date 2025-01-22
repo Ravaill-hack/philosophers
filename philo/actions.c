@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 14:22:43 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:31:03 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	*ft_do_sth(void *phil)
 	{
 		if (ft_philo_died(philo->var, philo->n - 1) == 1)
 			return (NULL);
-		if (ft_eat(philo->var, philo->n - 1) == 0)
-			return (NULL);
+		ft_eat(philo->var, philo->n - 1);
 		if (ft_philo_died(philo->var, philo->n - 1) == 1
 			|| ft_philo_ate_enough(philo->var, philo->n - 1) == 1)
 			return (NULL);
