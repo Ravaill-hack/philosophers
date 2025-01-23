@@ -6,11 +6,28 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 16:55:49 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:33:42 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	*ft_check_end(void *v)
+{
+	t_var	*var;
+
+	var = (t_var *)v;
+
+	while (ft_some_1_died(var) == 0)
+	{
+		usleep(2000);
+		pthread_mutex_lock(&(var->m_f));
+		if (var->nb_finish == var->nb_philo)
+			return (NULL);
+		pthread_mutex_unlock(&(var->m_f));
+	}
+	return (var);
+}
 
 void	*ft_do_sth(void *phil)
 {
@@ -23,21 +40,17 @@ void	*ft_do_sth(void *phil)
 		return (ft_eat_sleep_die(philo));
 	while (1)
 	{
-		if (ft_philo_died(philo->var, philo->n - 1) == 1
-			|| ft_some_1_died(philo->var))
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
 			return (NULL);
 		ft_eat(philo->var, philo->n - 1);
 		if (ft_philo_died(philo->var, philo->n - 1) == 1
-			|| ft_philo_ate_enough(philo->var, philo->n - 1) == 1
-			|| ft_some_1_died(philo->var))
+			|| ft_philo_ate_enough(philo->var, philo->n - 1) == 1)
 			return (NULL);
 		ft_sleep(philo->var, philo->n - 1);
-		if (ft_philo_died(philo->var, philo->n - 1) == 1
-			|| ft_some_1_died(philo->var))
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
 			return (NULL);
 		ft_put_message(philo->n - 1, &(philo->var->m_m), " is thinking\n");
-		if (ft_philo_died(philo->var, philo->n - 1) == 1
-			|| ft_some_1_died(philo->var))
+		if (ft_philo_died(philo->var, philo->n - 1) == 1)
 			return (NULL);
 	}
 	return (phil);

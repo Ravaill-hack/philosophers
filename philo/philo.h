@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 16:56:12 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:28:16 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ typedef struct s_var
 	long			t_start;
 	int				dead;
 	int				nb_philo;
+	int				nb_finish;
 	long			t_2_die;
 	long			t_2_eat;
 	long			t_2_slp;
 	int				nb_eat_4_each;
+	pthread_t		death_checker;
 	pthread_mutex_t	m_m;
 	pthread_mutex_t	m_d;
+	pthread_mutex_t	m_f;
 	pthread_mutex_t	*mut_forks;
 	t_philo			*philo;
 }	t_var;
@@ -63,6 +66,7 @@ int		ft_type_error(char *str);
 /*
 Fonctions de demarrage et suivi
 */
+void	*ft_check_end(void *v);
 int		ft_join(t_var *var);
 int		ft_end_cycle(t_var *var);
 int		ft_philo_died(t_var *var, int i_p);

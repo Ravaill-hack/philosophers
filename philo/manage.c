@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 16:33:47 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:27:18 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ int	ft_philo_ate_enough(t_var *var, int i_p)
 	if (var->nb_eat_4_each == -1)
 		return (0);
 	if (var->philo[i_p].nb_meals >= var->nb_eat_4_each)
+	{
+		pthread_mutex_lock(&(var->m_f));
+		var->nb_finish ++;
+		pthread_mutex_unlock(&(var->m_f));
 		return (1);
+	}
 	return (0);
 }
 
@@ -51,6 +56,7 @@ int	ft_join(t_var *var)
 	int	i;
 
 	i = 0;
+	pthread_join(var->death_checker, NULL);
 	while (i < var->nb_philo)
 	{
 		pthread_join(var->philo[i].thread, NULL);
@@ -71,6 +77,7 @@ int	ft_end_cycle(t_var *var)
 	}
 	pthread_mutex_destroy(&(var->m_m));
 	pthread_mutex_destroy(&(var->m_d));
+	pthread_mutex_destroy(&(var->m_f));
 	free (var->mut_forks);
 	var->mut_forks = NULL;
 	free (var->philo);
