@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 12:59:44 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:58:12 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &(s[i]), 1);
 		i++;
 	}
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	long int	nbr;
-	char		c;
-
-	nbr = (long int) n;
-	if (nbr >= 10)
-		ft_putnbr_fd(nbr / 10, fd);
-	c = nbr % 10 + 48;
-	write(fd, &c, 1);
 }
 
 long	ft_atol(char *str)

@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 15:42:20 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:55:49 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_do_sth(void *phil)
 	philo = (t_philo *)phil;
 	if (philo->var->nb_philo == 1)
 		return (ft_do_one(philo));
+	if (philo->var->t_2_slp >= philo->var->t_2_die)
+		return (ft_eat_sleep_die(philo));
 	while (1)
 	{
 		if (ft_philo_died(philo->var, philo->n - 1) == 1
@@ -49,6 +51,15 @@ void	*ft_do_one(t_philo *philo)
 	return (NULL);
 }
 
+void	*ft_eat_sleep_die(t_philo *philo)
+{
+	ft_eat(philo->var, philo->n - 1);
+	ft_put_message(philo->n - 1, &(philo->var->m_m), " is sleeping\n");
+	usleep(1000 * (int)(philo->var->t_2_die));
+	ft_put_message(philo->n - 1, &(philo->var->m_m), " died\n");
+	return (NULL);
+}
+
 int	ft_eat(t_var *var, int i_p)
 {
 	ft_take_2_forks(var, i_p);
@@ -67,4 +78,31 @@ void	ft_sleep(t_var *var, int i_p)
 {
 	ft_put_message(i_p, &(var->m_m), " is sleeping\n");
 	usleep(1000 * (int)(var->t_2_slp));
+}
+
+int	ft_take_2_forks(t_var *var, int i_p)
+{
+	if (i_p % 2 == 0)
+	{
+		pthread_mutex_lock((var->philo[i_p]).f_lft);
+		ft_put_message(i_p, &(var->m_m), " has taken a fork\n");
+		if (pthread_mutex_lock((var->philo[i_p]).f_rgt) != 0)
+		{
+			pthread_mutex_unlock((var->philo[i_p]).f_lft);
+			return (0);
+		}
+		ft_put_message(i_p, &(var->m_m), " has taken a fork\n");
+	}
+	else
+	{
+		pthread_mutex_lock((var->philo[i_p]).f_rgt);
+		ft_put_message(i_p, &(var->m_m), " has taken a fork\n");
+		if (pthread_mutex_lock((var->philo[i_p]).f_lft) != 0)
+		{
+			pthread_mutex_unlock((var->philo[i_p]).f_rgt);
+			return (0);
+		}
+		ft_put_message(i_p, &(var->m_m), " has taken a fork\n");
+	}
+	return (1);
 }

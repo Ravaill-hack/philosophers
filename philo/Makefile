@@ -5,9 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 SRC_FILES = \
 	main.c \
 	actions.c \
-	forks_utils.c \
 	utils.c \
-	debug.c \
 	manage.c \
 	error.c \
 	init.c
