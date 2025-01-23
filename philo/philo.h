@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 13:03:16 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:25:05 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct s_philo
 {
 	int				n;
-	long			h_end_last_meal;
+	long			h_last;
 	int				is_eating;
 	long			h_2_die;
 	int				nb_meals;
@@ -86,5 +86,6 @@ void	ft_put_message(int i_p, pthread_mutex_t *mut, char *str);
 Fonctions pour debugger
 */
 void	ft_print_data(t_var	var);
+void	ft_print_philo(t_var var, t_philo *philo, int i);
 
 #endif
