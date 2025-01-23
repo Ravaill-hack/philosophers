@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:51:15 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 13:02:15 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:44:02 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int	ft_take_2_forks(t_var *var, int i_p)
 	}
 	return (1);
 }
-

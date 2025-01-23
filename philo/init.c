@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 13:00:55 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:35:12 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 	philo->n = nb + 1;
 	philo->nb_meals = 0;
 	philo->h_2_die = var->t_start + var->t_2_die;
-	philo->is_eating = 0;
 	philo->var = var;
 	if (var->nb_philo == 1)
 	{
@@ -56,7 +55,6 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 		philo->f_rgt = &(var->mut_forks[0]);
 	else
 		philo->f_rgt = &(var->mut_forks[nb + 1]);
-	//pthread_mutex_init(&(philo->m_phil), NULL);
 	pthread_create(&(philo->thread), NULL, &ft_do_sth, philo);
 }
 
@@ -68,15 +66,17 @@ t_var	*ft_init_var(int argc, char **argv)
 	if (!var)
 		return (NULL);
 	var->nb_philo = (int)ft_atol(argv[1]);
-	var->t_2_die = (int)ft_atol(argv[2]);
-	var->t_2_eat = (int)ft_atol(argv[3]);
-	var->t_2_slp = (int)ft_atol(argv[4]);
+	var->t_2_die = ft_atol(argv[2]);
+	var->t_2_eat = ft_atol(argv[3]);
+	var->t_2_slp = ft_atol(argv[4]);
 	if (argc == 5)
 		var->nb_eat_4_each = -1;
 	else
 		var->nb_eat_4_each = (int)ft_atol(argv[5]);
 	var->t_start = ft_get_time_ms();
+	var->dead = 0;
 	ft_build (var);
 	pthread_mutex_init(&(var->m_m), NULL);
+	pthread_mutex_init(&(var->m_d), NULL);
 	return (var);
 }
