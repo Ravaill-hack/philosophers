@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 13:13:49 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:29:40 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ void	*ft_do_sth(void *phil)
 	t_philo	*philo;
 
 	philo = (t_philo *)phil;
-	// if ((philo->n - 1) % 2 == 0)
-	// 	usleep(500);
+	if (philo->var->nb_philo == 1)
+	{
+		ft_put_message(philo->n - 1, &(philo->var->m_m), " has taken a fork\n");
+		usleep(philo->var->t_2_die * 1000);
+		ft_put_message(philo->n - 1, &(philo->var->m_m), " died\n");
+		return (NULL);
+	}
 	while (1)
 	{
 		if (ft_philo_died(philo->var, philo->n - 1) == 1)
