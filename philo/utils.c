@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:33 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:59:44 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ long	ft_get_time_ms(void)
 	return (((long)tv.tv_sec * 1000) + ((long)tv.tv_usec / 1000));
 }
 
-void	ft_put_message(int i_p, t_var *var, char *str)
+void	ft_put_message(int i_p, pthread_mutex_t *mut, char *str)
 {
-	printf("%ld %d%s", ft_get_time_ms(), var->philo[i_p].n, str);
+	pthread_mutex_lock(mut);
+	printf("%ld %d%s", ft_get_time_ms(), i_p + 1, str);
+	pthread_mutex_unlock(mut);
 }

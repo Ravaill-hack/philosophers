@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 14:16:15 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:00:55 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 		philo->f_rgt = &(var->mut_forks[0]);
 	else
 		philo->f_rgt = &(var->mut_forks[nb + 1]);
+	//pthread_mutex_init(&(philo->m_phil), NULL);
 	pthread_create(&(philo->thread), NULL, &ft_do_sth, philo);
 }
 
@@ -75,7 +76,7 @@ t_var	*ft_init_var(int argc, char **argv)
 	else
 		var->nb_eat_4_each = (int)ft_atol(argv[5]);
 	var->t_start = ft_get_time_ms();
-	pthread_mutex_init(&(var->mut_var), NULL);
 	ft_build (var);
+	pthread_mutex_init(&(var->m_m), NULL);
 	return (var);
 }

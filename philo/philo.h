@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/22 13:36:31 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:03:16 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@
 typedef struct s_philo
 {
 	int				n;
-	int				h_end_last_meal;
+	long			h_end_last_meal;
 	int				is_eating;
 	long			h_2_die;
 	int				nb_meals;
 	pthread_t		thread;
 	pthread_mutex_t	*f_rgt;
 	pthread_mutex_t	*f_lft;
+	//pthread_mutex_t	m_phil;
 	struct	s_var	*var;
 }	t_philo;
 
@@ -42,8 +43,8 @@ typedef struct s_var
 	int				t_2_eat;
 	int				t_2_slp;
 	int				nb_eat_4_each;
+	pthread_mutex_t	m_m;
 	pthread_mutex_t	*mut_forks;
-	pthread_mutex_t	mut_var;
 	t_philo			*philo;
 }	t_var;
 
@@ -80,7 +81,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 long	ft_atol(char *str);
 long	ft_get_time_ms(void);
-void	ft_put_message(int i_p, t_var *var, char *str);
+void	ft_put_message(int i_p, pthread_mutex_t *mut, char *str);
 /*
 Fonctions pour debugger
 */
