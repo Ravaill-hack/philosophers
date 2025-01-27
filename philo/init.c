@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 17:28:29 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:00:15 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ t_var	*ft_init_var(int argc, char **argv)
 		var->nb_eat_4_each = (int)ft_atol(argv[5]);
 	var->t_start = ft_get_time_ms();
 	var->dead = 0;
+	var->end = 0;
 	var->nb_finish = 0;
 	ft_build (var);
+	pthread_mutex_init(&(var->m_e), NULL);
 	pthread_mutex_init(&(var->m_m), NULL);
 	pthread_mutex_init(&(var->m_d), NULL);
 	pthread_mutex_init(&(var->m_f), NULL);

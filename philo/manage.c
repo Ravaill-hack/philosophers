@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 17:27:18 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:01:10 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ int	ft_some_1_died(t_var *var)
 		return (1);
 	}
 	pthread_mutex_unlock(&var->m_d);
+	return (0);
+}
+
+int	ft_end_detection(t_var *var)
+{
+	pthread_mutex_lock(&var->m_e);
+	if (var->end == 1)
+	{
+		pthread_mutex_unlock(&var->m_e);
+		return (1);
+	}
+	pthread_mutex_unlock(&var->m_e);
 	return (0);
 }
 
@@ -75,6 +87,7 @@ int	ft_end_cycle(t_var *var)
 		pthread_mutex_destroy(&(var->mut_forks[i]));
 		i++;
 	}
+	pthread_mutex_destroy(&(var->m_e));
 	pthread_mutex_destroy(&(var->m_m));
 	pthread_mutex_destroy(&(var->m_d));
 	pthread_mutex_destroy(&(var->m_f));

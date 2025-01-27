@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 17:28:16 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:12:40 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 typedef struct s_var
 {
 	long			t_start;
+	int				end;
 	int				dead;
 	int				nb_philo;
 	int				nb_finish;
@@ -44,6 +45,7 @@ typedef struct s_var
 	long			t_2_slp;
 	int				nb_eat_4_each;
 	pthread_t		death_checker;
+	pthread_mutex_t	m_e;
 	pthread_mutex_t	m_m;
 	pthread_mutex_t	m_d;
 	pthread_mutex_t	m_f;
@@ -72,6 +74,8 @@ int		ft_end_cycle(t_var *var);
 int		ft_philo_died(t_var *var, int i_p);
 int		ft_some_1_died(t_var *var);
 int		ft_philo_ate_enough(t_var *var, int i_p);
+int		ft_end_detection(t_var *var);
+int		ft_check_conditions(t_philo *philo);
 /*
 Actions
 */

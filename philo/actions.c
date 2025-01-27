@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:11 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 17:33:42 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:20:22 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,30 @@ void	*ft_check_end(void *v)
 
 	while (ft_some_1_died(var) == 0)
 	{
-		usleep(2000);
+		usleep(500);
 		pthread_mutex_lock(&(var->m_f));
 		if (var->nb_finish == var->nb_philo)
+		{
+			pthread_mutex_lock(&(var->m_e));
+			var->end = 1;
+			pthread_mutex_unlock(&(var->m_e));
 			return (NULL);
+		}
 		pthread_mutex_unlock(&(var->m_f));
 	}
+	pthread_mutex_lock(&(var->m_e));
+	var->end = 1;
+	pthread_mutex_unlock(&(var->m_e));
 	return (var);
+}
+
+int	ft_check_conditions(t_philo *philo)
+{
+	if (ft_philo_died(philo->var, philo->n - 1) == 1
+		|| ft_philo_ate_enough(philo->var, philo->n - 1) == 1
+		|| ft_end_detection(philo->var) == 1)
+		return (1);
+	return (0);
 }
 
 void	*ft_do_sth(void *phil)
@@ -40,18 +57,15 @@ void	*ft_do_sth(void *phil)
 		return (ft_eat_sleep_die(philo));
 	while (1)
 	{
-		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+		if (ft_check_conditions(philo) == 1)
 			return (NULL);
 		ft_eat(philo->var, philo->n - 1);
-		if (ft_philo_died(philo->var, philo->n - 1) == 1
-			|| ft_philo_ate_enough(philo->var, philo->n - 1) == 1)
+		if (ft_check_conditions(philo) == 1)
 			return (NULL);
 		ft_sleep(philo->var, philo->n - 1);
-		if (ft_philo_died(philo->var, philo->n - 1) == 1)
+		if (ft_check_conditions(philo) == 1)
 			return (NULL);
 		ft_put_message(philo->n - 1, &(philo->var->m_m), " is thinking\n");
-		if (ft_philo_died(philo->var, philo->n - 1) == 1)
-			return (NULL);
 	}
 	return (phil);
 }
@@ -60,7 +74,7 @@ void	*ft_do_one(t_philo *philo)
 {
 	ft_put_message(philo->n - 1, &(philo->var->m_m), " has taken a fork\n");
 	usleep(philo->var->t_2_die * 1000);
-	ft_put_message(philo->n - 1, &(philo->var->m_m), " died\n");
+	ft_philo_died(philo->var, philo->n - 1);
 	return (NULL);
 }
 
@@ -69,7 +83,7 @@ void	*ft_eat_sleep_die(t_philo *philo)
 	ft_eat(philo->var, philo->n - 1);
 	ft_put_message(philo->n - 1, &(philo->var->m_m), " is sleeping\n");
 	usleep(1000 * (int)(philo->var->t_2_die));
-	ft_put_message(philo->n - 1, &(philo->var->m_m), " died\n");
+	ft_philo_died(philo->var, philo->n - 1);
 	return (NULL);
 }
 
