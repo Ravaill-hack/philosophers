@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/27 10:01:10 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:01:37 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ int	ft_end_detection(t_var *var)
 		return (1);
 	}
 	pthread_mutex_unlock(&var->m_e);
+	pthread_mutex_lock(&var->m_f);
+	if (var->nb_finish >= var->nb_philo)
+	{
+		pthread_mutex_unlock(&var->m_f);
+		return (1);
+	}
+	pthread_mutex_unlock(&var->m_f);
+	pthread_mutex_lock(&var->m_d);
+	if (var->dead != 0)
+	{
+		pthread_mutex_unlock(&var->m_d);
+		return (1);
+	}
+	pthread_mutex_unlock(&var->m_d);
 	return (0);
 }
 
