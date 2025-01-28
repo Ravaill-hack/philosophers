@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:29 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 15:58:12 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:01:02 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,11 @@ void	ft_put_message(int i_p, pthread_mutex_t *mut, char *str)
 	pthread_mutex_lock(mut);
 	printf("%ld %d%s", ft_get_time_ms(), i_p + 1, str);
 	pthread_mutex_unlock(mut);
+}
+
+int	ft_put_back_2_forks(t_var *var, int i_p)
+{
+	pthread_mutex_unlock((var->philo[i_p]).f_lft);
+	pthread_mutex_unlock((var->philo[i_p]).f_rgt);
+	return (0);
 }

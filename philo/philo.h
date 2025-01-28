@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 13:28:02 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:58:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		ft_sleep(t_var *var, int i_p);
 int		ft_take_2_forks(t_var *var, int i_p);
 int		ft_lft_fork_first(t_var *var, int i_p);
 int		ft_rgt_fork_first(t_var *var, int i_p);
+int		ft_put_back_2_forks(t_var *var, int i_p);
 /*
 Fonctions auxiliaires
 */
