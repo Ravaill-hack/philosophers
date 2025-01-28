@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:52:53 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 14:16:54 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:45:28 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	*ft_monitor(void *v)
 void	*ft_do_sth(void *phil)
 {
 	t_philo	*philo;
+	int		ind;
 
 	philo = (t_philo *)phil;
 	if (philo->var->nb_philo == 1)
@@ -49,10 +50,18 @@ void	*ft_do_sth(void *phil)
 	{
 		if (ft_check_philo(philo) == 1)
 			return (ft_set_end(philo->var));
-		if (ft_eat(philo->var, philo->n - 1) == 0)
+		else if (ft_check_philo(philo) == 2)
+			return (NULL);
+		ind = ft_eat(philo->var, philo->n - 1);
+		if (ind == 1)
 			return (ft_set_end(philo->var));
-		if (ft_sleep(philo->var, philo->n - 1) == 0)
+		else if (ind == 2)
+			return (NULL);
+		ind = ft_sleep(philo->var, philo->n - 1);
+		if (ind == 1)
 			return (ft_set_end(philo->var));
+		else if (ind == 02)
+			return (NULL);
 		ft_put_message(philo->n - 1, &(philo->var->m_m), " is thinking\n");
 	}
 	return (phil);

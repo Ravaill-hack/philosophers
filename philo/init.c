@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 10:23:09 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:36:27 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ t_var	*ft_init_var(int argc, char **argv)
 	var->dead = 0;
 	var->end = 0;
 	var->nb_finish = 0;
+	pthread_create(&(var->death_checker), NULL, &ft_monitor, var);
 	ft_build (var);
 	pthread_mutex_init(&(var->m_e), NULL);
 	pthread_mutex_init(&(var->m_m), NULL);
 	pthread_mutex_init(&(var->m_d), NULL);
 	pthread_mutex_init(&(var->m_f), NULL);
-	pthread_create(&(var->death_checker), NULL, &ft_monitor, var);
 	return (var);
 }

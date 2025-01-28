@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:47:10 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 13:51:55 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:14:58 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	ft_check_philo(t_philo *philo)
 {
 	if (ft_check_philo_death(philo->var, philo->n - 1) == 1
-		|| ft_check_philo_nb_meals(philo->var, philo->n - 1) == 1
 		|| ft_check_end(philo->var) == 1)
 		return (1);
+	else if (ft_check_philo_nb_meals(philo->var, philo->n - 1) == 1)
+		return (2);
 	return (0);
 }
 
