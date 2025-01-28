@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 10:33:25 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:53:52 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,4 @@ int	ft_end_cycle(t_var *var)
 	free (var);
 	var = NULL;
 	return (0);
-}
-
-void	*ft_set_end(t_var *var)
-{
-	pthread_mutex_lock(&(var->m_e));
-	var->end = 1;
-	pthread_mutex_unlock(&(var->m_e));
-	return (NULL);
 }
