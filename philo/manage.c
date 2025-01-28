@@ -6,76 +6,11 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:06:42 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/27 17:01:37 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:33:25 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_philo_died(t_var *var, int i_p)
-{
-	if (var->philo[i_p].h_2_die <= ft_get_time_ms())
-	{
-		ft_put_message (i_p, &(var->m_m), " died\n");
-		pthread_mutex_lock(&var->m_d);
-		var->dead = 1;
-		pthread_mutex_unlock(&var->m_d);
-		return (1);
-	}
-	return (0);
-}
-
-int	ft_some_1_died(t_var *var)
-{
-	pthread_mutex_lock(&var->m_d);
-	if (var->dead == 1)
-	{
-		pthread_mutex_unlock(&var->m_d);
-		return (1);
-	}
-	pthread_mutex_unlock(&var->m_d);
-	return (0);
-}
-
-int	ft_end_detection(t_var *var)
-{
-	pthread_mutex_lock(&var->m_e);
-	if (var->end == 1)
-	{
-		pthread_mutex_unlock(&var->m_e);
-		return (1);
-	}
-	pthread_mutex_unlock(&var->m_e);
-	pthread_mutex_lock(&var->m_f);
-	if (var->nb_finish >= var->nb_philo)
-	{
-		pthread_mutex_unlock(&var->m_f);
-		return (1);
-	}
-	pthread_mutex_unlock(&var->m_f);
-	pthread_mutex_lock(&var->m_d);
-	if (var->dead != 0)
-	{
-		pthread_mutex_unlock(&var->m_d);
-		return (1);
-	}
-	pthread_mutex_unlock(&var->m_d);
-	return (0);
-}
-
-int	ft_philo_ate_enough(t_var *var, int i_p)
-{
-	if (var->nb_eat_4_each == -1)
-		return (0);
-	if (var->philo[i_p].nb_meals >= var->nb_eat_4_each)
-	{
-		pthread_mutex_lock(&(var->m_f));
-		var->nb_finish ++;
-		pthread_mutex_unlock(&(var->m_f));
-		return (1);
-	}
-	return (0);
-}
 
 int	ft_join(t_var *var)
 {
@@ -112,4 +47,12 @@ int	ft_end_cycle(t_var *var)
 	free (var);
 	var = NULL;
 	return (0);
+}
+
+void	*ft_set_end(t_var *var)
+{
+	pthread_mutex_lock(&(var->m_e));
+	var->end = 1;
+	pthread_mutex_unlock(&(var->m_e));
+	return (NULL);
 }

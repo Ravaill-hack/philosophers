@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:51:51 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/23 15:45:10 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:28:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	ft_is_arg_error(int argc, char **argv)
 	i = 1;
 	if (ft_arg_number_error(argc) == 1)
 	{
-		ft_putstr_fd("\nThe arguments should be set as following :\n", 1);
-		ft_putstr_fd("./philo nb_philos t_2_die t_2_eat t_2_slp\n", 1);
-		ft_putstr_fd("a 5th arg can be added : nb_meals_for_each_phil\n", 1);
+		ft_putstr_fd("\nThe arguments should be set as following :\n\n", 1);
+		ft_putstr_fd("./philo nb_philos t_2_die t_2_eat t_2_slp\n\n", 1);
+		ft_putstr_fd("a 5th arg can be added : nb_meals_for_each_phil\n\n", 1);
 		return (1);
 	}
 	while (i < argc)

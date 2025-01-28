@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/27 10:12:40 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:32:22 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,28 @@ int		ft_is_arg_error(int argc, char **argv);
 int		ft_arg_number_error(int argc);
 int		ft_type_error(char *str);
 /*
+Routines des threads
+*/
+void	*ft_monitor(void *v);
+void	*ft_do_sth(void *var);
+void	*ft_do_one(t_philo *philo);
+/*
 Fonctions de demarrage et suivi
 */
-void	*ft_check_end(void *v);
 int		ft_join(t_var *var);
 int		ft_end_cycle(t_var *var);
-int		ft_philo_died(t_var *var, int i_p);
-int		ft_some_1_died(t_var *var);
-int		ft_philo_ate_enough(t_var *var, int i_p);
-int		ft_end_detection(t_var *var);
-int		ft_check_conditions(t_philo *philo);
+void	*ft_set_end(t_var *var);
+/*
+Fonctions de verification
+*/
+int		ft_check_philo_death(t_var *var, int i_p);
+int		ft_check_philo_nb_meals(t_var *var, int i_p);
+int		ft_check_philo(t_philo *philo);
+int		ft_check_death(t_var *var);
+int		ft_check_end(t_var *var);
 /*
 Actions
 */
-void	*ft_do_sth(void *var);
-void	*ft_do_one(t_philo *philo);
-void	*ft_eat_sleep_die(t_philo *philo);
 int		ft_eat(t_var *var, int i_p);
 void	ft_sleep(t_var *var, int i_p);
 int		ft_take_2_forks(t_var *var, int i_p);

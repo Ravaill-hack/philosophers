@@ -8,6 +8,8 @@ SRC_FILES = \
 	utils.c \
 	manage.c \
 	error.c \
+	check.c \
+	routines.c \
 	init.c
 
 OBJS = $(SRC_FILES:.c=.o)

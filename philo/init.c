@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:35:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/27 10:00:15 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:23:09 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	ft_new_philo(t_var *var, t_philo *philo, int nb)
 {
 	philo->n = nb + 1;
 	philo->nb_meals = 0;
-	philo->h_2_die = var->t_start + var->t_2_die;
+	philo->h_last = var->t_start;
+	philo->h_2_die = philo->h_last + var->t_2_die;
 	philo->var = var;
 	if (var->nb_philo == 1)
 	{
@@ -82,6 +83,6 @@ t_var	*ft_init_var(int argc, char **argv)
 	pthread_mutex_init(&(var->m_m), NULL);
 	pthread_mutex_init(&(var->m_d), NULL);
 	pthread_mutex_init(&(var->m_f), NULL);
-	pthread_create(&(var->death_checker), NULL, &ft_check_end, var);
+	pthread_create(&(var->death_checker), NULL, &ft_monitor, var);
 	return (var);
 }
