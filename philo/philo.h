@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:17:12 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 11:23:07 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:28:02 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_check_end(t_var *var);
 Actions
 */
 int		ft_eat(t_var *var, int i_p);
-void	ft_sleep(t_var *var, int i_p);
+int		ft_sleep(t_var *var, int i_p);
 int		ft_take_2_forks(t_var *var, int i_p);
 int		ft_lft_fork_first(t_var *var, int i_p);
 int		ft_rgt_fork_first(t_var *var, int i_p);
@@ -100,6 +100,8 @@ void	ft_putstr_fd(char *s, int fd);
 long	ft_atol(char *str);
 long	ft_get_time_ms(void);
 void	ft_put_message(int i_p, pthread_mutex_t *mut, char *str);
+int		ft_sleep_while_eating(long time, t_var *var);
+int		ft_sleep_while_sleeping(long time, t_var *var, int i_p);
 /*
 Fonctions pour debugger
 */

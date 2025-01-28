@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:52:53 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 10:57:12 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:16:54 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*ft_monitor(void *v)
 	var = (t_var *)v;
 	while (1)
 	{
-		usleep(100);
+		usleep(1000);
 		pthread_mutex_lock(&(var->m_f));
-		if (var->nb_finish == var->nb_philo)
+		if (var->nb_finish >= var->nb_philo)
 		{
 			pthread_mutex_unlock(&(var->m_f));
 			return (ft_set_end(var));
@@ -48,13 +48,11 @@ void	*ft_do_sth(void *phil)
 	while (1)
 	{
 		if (ft_check_philo(philo) == 1)
-			return (NULL);
-		ft_eat(philo->var, philo->n - 1);
-		if (ft_check_philo(philo) == 1)
-			return (NULL);
-		ft_sleep(philo->var, philo->n - 1);
-		if (ft_check_philo(philo) == 1)
-			return (NULL);
+			return (ft_set_end(philo->var));
+		if (ft_eat(philo->var, philo->n - 1) == 0)
+			return (ft_set_end(philo->var));
+		if (ft_sleep(philo->var, philo->n - 1) == 0)
+			return (ft_set_end(philo->var));
 		ft_put_message(philo->n - 1, &(philo->var->m_m), " is thinking\n");
 	}
 	return (phil);

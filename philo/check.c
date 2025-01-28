@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:47:10 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/01/28 10:33:37 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:51:55 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ int	ft_check_philo_death(t_var *var, int i_p)
 {
 	if (var->philo[i_p].h_2_die <= ft_get_time_ms())
 	{
-		ft_put_message (i_p, &(var->m_m), " died\n");
 		pthread_mutex_lock(&var->m_d);
 		var->dead = 1;
+		usleep(1000);
+		ft_put_message (i_p, &(var->m_m), " died\n");
 		pthread_mutex_unlock(&var->m_d);
 		return (1);
 	}
